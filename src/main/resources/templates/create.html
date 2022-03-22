@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h1>Create New City</h1>
+<form id="form" th:action="@{/city/create}" method="post" th:object="${city}">
+    <label>Name:
+        <input type="text" th:field="*{name}" required>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </label>
+    <label>Area:
+        <input type="text" th:field="*{area}" required>
+        <p th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>
+    </label>
+    <label>Population:
+        <input type="text" th:field="*{population}" required>
+        <p th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></p>
+    </label>
+    <label>Description:
+        <input type="text" th:field="*{description}" required>
+        <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+    </label>
+    <label>Country:
+        <select th:field="*{country}">
+            <option th:each="c : ${countries}" th:value="${c.id}" th:text="${c.country}"></option>
+        </select>
+    </label>
+    <button type="submit">Create</button>
+</form>
+<a th:href="@{/student}">Back to home</a>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="/layout :: head"></head>-->
+<!--<body>-->
+<!--<h3>Create City</h3>-->
+
+<!--<div id="form">-->
+<!--    <form th:action="@{/create}" th:object="${city} " method="POST">-->
+<!--        <div>-->
+<!--            <label>Name</label>-->
+<!--            <th:block th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></th:block>-->
+<!--            <input type="text" th:field="*{name}" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Country</label>-->
+<!--            <select th:field="*{country}">-->
+<!--                <option th:each="c : ${countrys}" th:value="${c.id}" th:text="${c.country}"/>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Area</label>-->
+<!--            <th:block th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></th:block>-->
+<!--            <input type="text" th:field="*{area}" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Population</label>-->
+<!--            <th:block th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></th:block>-->
+<!--            <input type="text" th:field="*{population}" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>GDP</label>-->
+<!--            <th:block th:if="${#fields.hasErrors('gdp')}" th:errors="*{gdp}"></th:block>-->
+<!--            <input type="text" th:field="*{gdp}" required/>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>Description</label>-->
+<!--            <th:block th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></th:block>-->
+<!--            <input type="text" th:field="*{description}" required/>-->
+<!--        </div>-->
+<!--        <button type="submit">Create</button>-->
+<!--        <a role="button" th:href="@{/}">Back to home</a>-->
+<!--    </form>-->
+<!--</div>-->
+<!--<footer th:replace="/layout :: footer"></footer>-->
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h1>Edit City</h1>
+<!--<form id="form" th:action="@{/city/edit/{id}(id=${city.getId()})}" method="post" th:object="${city}">-->
+  <label>Name:
+    <input type="text" th:field="*{name}" required>
+<!--    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
+  </label>
+  <label>Area:
+    <input type="text" th:field="*{area}" required>
+<!--    <p th:if="${#fields.hasErrors('area')}" th:errors="*{area}"></p>-->
+  </label>
+  <label>Population:
+    <input type="text" th:field="*{population}" required>
+<!--    <p th:if="${#fields.hasErrors('population')}" th:errors="*{population}"></p>-->
+  </label>
+  <label>Description:
+    <input type="text" th:field="*{description}" required>
+<!--    <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>-->
+  </label>
+  <label>Country:
+    <select th:field="*{country}">
+      <option th:each="c : ${countries}" th:value="${c.getId()}" th:text="${c.getCountry()}"></option>
+    </select>
+  </label>
+  <button type="submit">Create</button>
+</form>
+<a th:href="@{/templates/student}">Back to home</a>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>

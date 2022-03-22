@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style th:replace="/layout :: css"></style>
+</head>
+<body>
+<h1><a style="text-decoration: none" type="button" th:href="@{/templates/city}"><span style="color: white">List Student</span></a></h1>
+<button><a th:href="@{/city/create}">Create new City</a></button><br><br>
+<button><a type="button" th:href="@{/country}">List Country</a></button><br><br>
+
+<form th:action="@{/templates/city}" method="get">
+    <label>Search By Name:
+        <input type="text" name="search" th:value="${search}">
+    </label>
+    <button type="submit">Search</button>
+</form><br>
+
+<table id="products">
+    <tr>
+        <th>Name</th>
+        <th>Area</th>
+        <th>Population</th>
+        <th>Description</th>
+        <th>Country</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    <tr th:each="c : ${cities}">
+        <td th:text="${c.getName()}"></td>
+        <td th:text="${c.getArea()}"></td>
+        <td th:text="${c.getPopulation()}"></td>
+        <td th:text="${c.getDescription()}"></td>
+        <td>
+            <a th:href="@{/country/{county}(country=${c.country.id})}">
+                <span th:text="${c.getCountry().getCountry()}"></span>
+            </a>
+
+        </td>
+        <td><a th:href="@{/city/edit/{id}(id=${c.getId()})}">Edit</a></td>
+        <td><a th:href="@{/city/delete/{id}(id=${c.getId()})}"
+               onclick="return confirm('Are you sure you want to Delete?')">Delete</a></td>
+        <td><a th:href="@{/city/view/{id}(id=${c.getId()})}">View</a></td>
+    </tr>
+</table>
+<br>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>
